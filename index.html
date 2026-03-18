@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Ремонт iPhone в Москве. Замена экрана, батареи. Выезд мастера.">
-  <meta name="robots" content="index, follow">
-<title>Ремонт iPhone в Москве — замена экрана от 30 минут | iFiX</title>
+<title>iFiX Service — ремонт техники</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -64,10 +66,10 @@ footer{padding:40px 0;text-align:center;color:#777;border-top:1px solid rgba(255
 <div class="container">
 <h2>Наши услуги</h2>
 <div class="grid">
-<div class="card"><h3>📱 Смартфоны</h3><p>Замена экранов, аккумуляторов.</p></div>
-<div class="card"><h3>💻 Ноутбуки</h3><p>Чистка, замена матриц, SSD.</p></div>
-<div class="card"><h3>📲 Планшеты</h3><p>Замена стекла и прошивка.</p></div>
-<div class="card"><h3>🚗 Выезд мастера</h3><p>Мастер приедет к вам.</p></div>
+<div class="card"><h3>📱 Смартфоны,планшеты</h3><p>Замена экрана, аккумулятора и другие виды ремонта</p></div>
+<div class="card"><h3>💻 Ноутбуки</h3><p>Чистка, замена матриц, SSD, OS</p></div>
+<div class="card"><h3>🕜🎧 Наушники и часы </h3><p>Замена дисплея, аккумулятора, прошивка</p></div>
+<div class="card"><h3>🚗 Выезд мастера</h3><p>Мастер приедет к вам</p></div>
 </div>
 </div>
 </section>
@@ -83,6 +85,7 @@ footer{padding:40px 0;text-align:center;color:#777;border-top:1px solid rgba(255
 <option>Смартфон</option>
 <option>Ноутбук</option>
 <option>Планшет</option>
+<option>Другое устройство</option>
 </select>
 <textarea id="problem" placeholder="Опишите проблему"></textarea>
 <button class="btn" type="submit">Отправить заявку</button>
@@ -92,8 +95,45 @@ footer{padding:40px 0;text-align:center;color:#777;border-top:1px solid rgba(255
 </div>
 </section>
 
-<footer>© 2026 iFiX Service</footer>
+<footer>
+<p>© 2020 iFiX Service</p>
+<p>Москва</p>
+</footer>
 
+<a href="tel:+79153491435" class="call-button">
+<span class="call-icon">📱</span> Позвонить
+</a>
+
+<style>
+.call-button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: transparent; 
+  color: #FFD700; 
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+  transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
+  z-index: 1000;
+}
+
+.call-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+}
+
+.call-icon {
+  font-size: 20px;
+  color: #3e397d; 
+}
+</style>
 
 <script>
 /* СКРОЛЛ */

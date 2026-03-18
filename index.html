@@ -147,33 +147,24 @@ let y=(e.clientY/window.innerHeight-0.5)*15;
 hero.style.transform=`rotateX(${-y}deg) rotateY(${x}deg)`;
 });
 // TELEGRAM FORM через Netlify Function
-document.getElementById("telegramForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  const name=document.getElementById("name").value;
-  const phone=document.getElementById("phone").value;
-  const device=document.getElementById("device").value;
-  const problem=document.getElementById("problem").value;
-
-  fetch("/.netlify/functions/sendTelegram", {
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({name, phone, device, problem})
-  })
-  .then(res=>res.json())
-  .then(data=>{
-    if(data.success){
-      document.getElementById("msg").innerText="✅ Заявка отправлена!";
-      document.getElementById("telegramForm").reset();
-    } else {
-      document.getElementById("msg").innerText="❌ Ошибка отправки.";
-      console.error(data.error);
-    }
-  })
-  .catch(err=>{
-    document.getElementById("msg").innerText="❌ Ошибка отправки.";
-    console.error(err);
-  });
+const BOT_TOKEN="8564153026:AAEix9DsdpzyjxU8Y3n9c-Loy8tSkzYJ88I";
+const CHAT_ID="773320599";
+document.getElementById("telegramForm").addEventListener("submit",function(e){
+e.preventDefault();
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let device=document.getElementById("device").value;
+let problem=document.getElementById("problem").value;
+let text=`📱 Новая заявка iFiX Service\n\nИмя: ${name}\nТелефон: ${phone}\nУстройство: ${device}\nПроблема: ${problem}`;
+fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({chat_id:CHAT_ID,text:text})
+})
+.then(()=>{document.getElementById("msg").innerText="✅ Заявка отправлена!";document.getElementById("telegramForm").reset();})
+.catch(()=>{document.getElementById("msg").innerText="❌ Ошибка отправки.";});
 });
+
 
 /* АНИМАЦИЯ ФОНА */
 const canvas=document.getElementById("bg");

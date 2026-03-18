@@ -146,44 +146,25 @@ let x=(e.clientX/window.innerWidth-0.5)*15;
 let y=(e.clientY/window.innerHeight-0.5)*15;
 hero.style.transform=`rotateX(${-y}deg) rotateY(${x}deg)`;
 });
-// TELEGRAM FORM через Netlify Function
-document.getElementById("telegramForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
-    
-    const msgElement = document.getElementById("msg");
-    msgElement.innerText = "⏳ Отправка...";
-    
-    const formData = {
-        name: document.getElementById("name").value,
-        phone: document.getElementById("phone").value,
-        device: document.getElementById("device").value,
-        problem: document.getElementById("problem").value
-    };
-
-    try {
-        const response = await fetch('/.netlify/functions/sendTelegram', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-        
-        if (result.success) {
-            msgElement.innerText = "✅ Заявка отправлена!";
-            document.getElementById("telegramForm").reset();
-        } else {
-            msgElement.innerText = "❌ Ошибка: " + (result.error || "Неизвестная ошибка");
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        msgElement.innerText = "❌ Ошибка отправки. Попробуйте позже.";
-    }
+/* TELEGRAM FORM */
+const BOT_TOKEN="8564153026:AAEix9DsdpzyjxU8Y3n9c-Loy8tSkzYJ88I";
+const CHAT_ID="773320599";
+document.getElementById("telegramForm").addEventListener("submit",function(e){
+e.preventDefault();
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let device=document.getElementById("device").value;
+let problem=document.getElementById("problem").value;
+let text=`📱 Новая заявка iFiX Service\n\nИмя: ${name}\nТелефон: ${phone}\nУстройство: ${device}\nПроблема: ${problem}`;
+fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({chat_id:CHAT_ID,text:text})
+})
+.then(()=>{document.getElementById("msg").innerText="✅ Заявка отправлена!";document.getElementById("telegramForm").reset();})
+.catch(()=>{document.getElementById("msg").innerText="❌ Ошибка отправки.";});
 });
+
 
 
 /* АНИМАЦИЯ ФОНА */

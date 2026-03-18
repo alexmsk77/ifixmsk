@@ -18,13 +18,15 @@ exports.handler = async (event) => {
     }
 
     try {
+        // Принимаем все поля из вашей формы
         const { name, phone, device, problem } = JSON.parse(event.body);
 
-        // ВАЖНО: Здесь ваш токен и chat_id
+        // ВАШ ТОКЕН И CHAT_ID
         const BOT_TOKEN = "8564153026:AAEix9DsdpzyjxU8Y3n9c-Loy8tSkzYJ88I";
         const CHAT_ID = "773320599";
 
-        const text = `📱 Новая заявка iFiX Service\n\nИмя: ${name}\nТелефон: ${phone}\nУстройство: ${device}\nПроблема: ${problem}`;
+        // Формируем сообщение
+        const text = `📱 Новая заявка iFiX Service\n\n👤 Имя: ${name}\n📱 Телефон: ${phone}\n📱 Устройство: ${device}\n📝 Проблема: ${problem || "Не указана"}`;
 
         const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
         
@@ -33,7 +35,8 @@ exports.handler = async (event) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 chat_id: CHAT_ID,
-                text: text
+                text: text,
+                parse_mode: 'HTML'
             })
         });
 

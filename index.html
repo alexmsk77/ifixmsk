@@ -166,9 +166,13 @@ document.getElementById("telegramForm").addEventListener("submit", function(e){
       document.getElementById("telegramForm").reset();
     } else {
       document.getElementById("msg").innerText="❌ Ошибка отправки.";
+      console.error(data.error);
     }
   })
-  .catch(()=>{document.getElementById("msg").innerText="❌ Ошибка отправки."});
+  .catch(err=>{
+    document.getElementById("msg").innerText="❌ Ошибка отправки.";
+    console.error(err);
+  });
 });
 
 /* АНИМАЦИЯ ФОНА */
